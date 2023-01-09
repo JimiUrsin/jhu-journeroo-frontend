@@ -1,6 +1,8 @@
 # Journeroo
 This is the user facing front end of the Journeroo application, which is my submission for the Solita Dev Academy pre-assignment. This front-end was created using React, the [back-end](https://github.com/JimiUrsin/jhu-journeroo-backend) is implemented in Kotlin and it uses a PostgreSQL database. All of these (Front-end, Back-end and DB) have been separately deployed to cloud. The front-end and back-end are deployed to cloud using Dockerfiles.
 
+I chose React as the front-end language as it's a very nice and powerful language. I've also been wanting to dive more into the Spring Framework and Kotlin, which is why those were used in this project. I hadn't used either one before.
+
 ## How to operate
 Visit https://jhu-journeroo-frontend.fly.dev/
 
