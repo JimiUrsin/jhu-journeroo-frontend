@@ -6,4 +6,9 @@ const getAll = () => {
     return axios.get(`${baseUrl}/api/journeys/`)
 }
 
-export default { getAll };
+const getPage = (page) => {
+    console.log(`Sending GET request to ${baseUrl}/api/journeys/${page}`)
+    return axios.get(`${baseUrl}/api/journeys/${page}`)
+}
+
+export default { getAll, getPage };
