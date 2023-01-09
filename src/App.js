@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import journeyService from './services/journeys'
 
-function App() {
+const JourneyList = () => {
+  const [journeys, setJourneys] = useState({})
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await journeyService.getAll()
+      
+      setJourneys(result.data.content)
+    }
+
+    fetchData();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    JSON.stringify(journeys)
+  )
+}
+
+const App = () => {
+  return (
+    <>
+      <h1>Journeroo</h1>
+      <JourneyList journeys={{}}/>
+    </>
+  )
 }
 
 export default App;
