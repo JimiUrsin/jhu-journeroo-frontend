@@ -11,6 +11,7 @@ const JourneyList = () => {
     if (page === 0) {
       const fetchData = async () => {
         const result = await journeyService.getAll()
+        console.log(result)
   
         setJourneys(result.data.content)
         setAmtPages(result.data.totalPages)
