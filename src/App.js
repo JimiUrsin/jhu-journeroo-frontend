@@ -16,7 +16,26 @@ const JourneyList = () => {
   }, [])
 
   return (
-    JSON.stringify(journeys)
+    <table>
+      <thead>
+        <tr>
+          <th>Departure station name</th>
+          <th>Return station name</th>
+          <th>Departure time</th>
+          <th>Return time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {journeys.map((journey) =>
+          <tr key={journey.id}>
+            <td>{journey.departureStationName}</td>
+            <td>{journey.returnStationName}</td>
+            <td>{new Date(journey.departureTimestamp).toLocaleString()}</td>
+            <td>{new Date(journey.returnTimestamp).toLocaleString()}</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
   )
 }
 
