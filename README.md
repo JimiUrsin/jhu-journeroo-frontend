@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# Journeroo
+This is the user facing front end of the Journeroo application, which is my submission for the Solita Dev Academy pre-assignment. This front-end was created using React, the [back-end](https://github.com/JimiUrsin/jhu-journeroo-backend) is implemented in Kotlin and it uses a PostgreSQL database. All of these (Front-end, Back-end and DB) have been separately deployed to cloud. The front-end and back-end are deployed to cloud using Dockerfiles.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to operate
+Visit https://jhu-journeroo-frontend.fly.dev/
 
-## Available Scripts
+The back-end has a RESTful API that the front-end calls, and the back-end has a connection to the cloud database. Deploying the database separately was a good idea, since it means that I don't have to prepopulate the database every time the back-end gets deployed, and it also saves space on the back-end image.
 
-In the project directory, you can run:
+## How to operate locally
+If you would like to operate the whole stack locally for some reason, you can just deploy the front-end and back-end on Docker and have a PostgreSQL instance running on your machine.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Implementation details
+- All of the data imported was validated as it was being loaded to the database.
+    - No journeys were imported that lasted less than ten seconds
+    - No journeys were imported that covered distances shorter than 10 meters.
+    - No journeys were imported in which any of the columns were null
+- The application uses pagination to limit results (to a hardcoded maximum of 30)
+- Fun fact: I am paying money for running these servers on the cloud as we speak, as the 256 megabytes of RAM on the free tier of Fly was not nearly enough for Spring or Nodejs.
