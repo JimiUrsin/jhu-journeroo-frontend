@@ -17,3 +17,11 @@ If you would like to operate the whole stack locally for some reason, you can ju
     - No journeys were imported in which any of the columns were null
 - The application uses pagination to limit results (to a hardcoded maximum of 30)
 - Fun fact: I am paying money for running these servers on the cloud as we speak, as the 256 megabytes of RAM on the free tier of Fly was not nearly enough for Spring or Nodejs.
+
+## Known problems
+- The app is slow
+    - This is due to it being on a Shared VM, buying more resources would fix this.
+- Changing the page does not work if you press "Next" or "Previous" too fast
+    - That's to prevent flooding
+- The encoding is all messed up
+    - Yeah
