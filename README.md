@@ -21,9 +21,9 @@ If you would like to operate the whole stack locally for some reason, you can ju
 - Fun fact: I am paying money for running these servers on the cloud as we speak, as the 256 megabytes of RAM on the free tier of Fly was not nearly enough for Spring or Nodejs.
 
 ## Known problems
-- The app is slow
+- The app is slow (sometimes)
     - This is due to it being on a Shared VM, buying more resources would fix this.
-- Changing the page does not work if you press "Next" or "Previous" too fast
+- Changing the page does not work if you press "Next" or "Previous" too fast (sometimes)
     - That's to prevent flooding
 - Some data appears twice
     - I accidentally imported the same CSV twice to the database
