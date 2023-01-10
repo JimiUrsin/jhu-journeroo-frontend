@@ -6,7 +6,7 @@ I chose React as the front-end language as it's a very nice and powerful languag
 ## How to operate
 Visit https://jhu-journeroo-frontend.fly.dev/
 
-The back-end has a RESTful API that the front-end calls, and the back-end has a connection to the cloud database. Deploying the database separately was a good idea, since it means that I don't have to prepopulate the database every time the back-end gets deployed, and it also saves space on the back-end image.
+The back-end has a JSON API that the front-end calls, and the back-end has a connection to the cloud database. Deploying the database separately was a good idea, since it means that I don't have to prepopulate the database every time the back-end gets deployed, and it also saves space on the back-end image.
 
 ## How to operate locally
 If you would like to operate the whole stack locally for some reason, you can just deploy the front-end and back-end on Docker and have a PostgreSQL instance running on your machine.
