@@ -25,5 +25,3 @@ If you would like to operate the whole stack locally for some reason, you can ju
     - This is due to it being on a Shared VM, buying more resources would fix this.
 - Changing the page does not work if you press "Next" or "Previous" too fast (sometimes)
     - That's to prevent flooding
-- Some data appears twice
-    - I accidentally imported the same CSV twice to the database
