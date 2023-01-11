@@ -6,6 +6,7 @@ const JourneyList = () => {
   const [journeys, setJourneys] = useState([])  
   const [page, setPage] = useState(0)
   const [amtPages, setAmtPages] = useState("0")
+  const [pageInput, setPageInput] = useState("")
 
   useEffect(() => {
     if (page === 0) {
@@ -41,6 +42,17 @@ const JourneyList = () => {
     }
   }
 
+  const jumpToPage = () => {
+    const userInput = Number.parseInt(pageInput) - 1 // This is fine, NaN - 1 = NaN
+    if (isNaN(userInput) 
+    ||  userInput < 0
+    ||  userInput >= amtPages) return
+
+    setPage(userInput)
+  }
+
+  const handlePageInputChange = (event) => {setPageInput(event.target.value)}
+
   return (
     <div>
       <div>
@@ -49,6 +61,11 @@ const JourneyList = () => {
       <div>
         <button onClick={prevPage}>Previous page</button>
         <button onClick={nextPage}>Next page</button>
+      </div>
+      <div>
+        Jump to page:
+        <input type="text" onInput={handlePageInputChange}></input>
+        <button onClick={jumpToPage}>Jump!</button>
       </div>
       <table>
         <thead>
