@@ -30,6 +30,33 @@ const Sort = ({setColumn, setSort}) => {
   )
 }
 
+const Journeys = ({journeys}) => (
+  <table>
+    <thead>
+      <tr>
+        <th>Departure station name</th>
+        <th>Return station name</th>
+        <th>Distance travelled (m)</th>
+        <th>Journey duration (s)</th>
+        <th>Departure time</th>
+        <th>Return time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {journeys.map((journey) =>
+        <tr key={journey.id}>
+          <td>{journey.departureStationName}</td>
+          <td>{journey.returnStationName}</td>
+          <td>{journey.distance}</td>
+          <td>{journey.duration}</td>
+          <td>{new Date(journey.departureTimestamp).toLocaleString()}</td>
+          <td>{new Date(journey.returnTimestamp).toLocaleString()}</td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+)
+
 const JourneyList = () => {
   const [journeys, setJourneys] = useState([])  
   const [page, setPage] = useState(0)
@@ -97,30 +124,7 @@ const JourneyList = () => {
         <button onClick={jumpToPage}>Jump!</button>
       </div>
       <Sort setColumn={setColumn} setSort={setSort}/>
-      <table>
-        <thead>
-          <tr>
-            <th>Departure station name</th>
-            <th>Return station name</th>
-            <th>Distance travelled (m)</th>
-            <th>Journey duration (s)</th>
-            <th>Departure time</th>
-            <th>Return time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {journeys.map((journey) =>
-            <tr key={journey.id}>
-              <td>{journey.departureStationName}</td>
-              <td>{journey.returnStationName}</td>
-              <td>{journey.distance}</td>
-              <td>{journey.duration}</td>
-              <td>{new Date(journey.departureTimestamp).toLocaleString()}</td>
-              <td>{new Date(journey.returnTimestamp).toLocaleString()}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <Journeys journeys={journeys}/>
     </div>
   )
 }
