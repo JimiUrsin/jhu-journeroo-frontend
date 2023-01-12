@@ -39,16 +39,17 @@ const JourneyList = () => {
   const [column, setColumn] = useState("departurestationname")
 
   useEffect(() => {
-    if (page === 0) {
       const fetchData = async () => {
-        const result = await journeyService.getAll(sort, column)
-  
-        setJourneys(result.data.content)
-        setAmtPages(result.data.totalPages)
-      }
+      const result = await journeyService.getAll("ASC", "departuretimestamp")
 
-      fetchData();
-    } else {
+      setJourneys(result.data.content)
+      setAmtPages(result.data.totalPages)
+    }
+
+    fetchData();
+  }, [])
+
+  useEffect(() => {
       const fetchData = async () => {
         const result = await journeyService.getPage(page, sort, column)
 
@@ -56,7 +57,6 @@ const JourneyList = () => {
       }
 
       fetchData();
-    }
   }, [page, sort, column])
 
   const prevPage = () => {
