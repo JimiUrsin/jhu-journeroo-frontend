@@ -2,17 +2,46 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import journeyService from './services/journeys'
 
+const Sort = ({setColumn, setSort}) => {
+  const columns = [
+    ["departurestationname", "Departure station name"],
+    ["returnstationname", "Return station name"],
+    ["distance", "Distance travelled"],
+    ["duration", "Journey duration"],
+    ["departuretimestamp", "Departure time"],
+    ["returntimestamp", "Return time"]
+  ]
+
+  return (
+    <div>
+      Sort by:
+      <select name="columns" onChange={(event) => setColumn(event.target.value)}>
+        {columns.map(([colName, colDisplay]) => 
+          <option key={colName} value={colName}>
+            {colDisplay}
+          </option>
+        )}
+      </select>
+      <select name="sort" onChange={(event) => setSort(event.target.value)}>
+        <option value="ASC">Ascending</option>
+        <option value="DESC">Descending</option>
+      </select>
+    </div>
+  )
+}
+
 const JourneyList = () => {
   const [journeys, setJourneys] = useState([])  
   const [page, setPage] = useState(0)
   const [amtPages, setAmtPages] = useState("0")
   const [pageInput, setPageInput] = useState("")
+  const [sort, setSort] = useState("ASC")
+  const [column, setColumn] = useState("departurestationname")
 
   useEffect(() => {
     if (page === 0) {
       const fetchData = async () => {
-        const result = await journeyService.getAll()
-        console.log(result)
+        const result = await journeyService.getAll(sort, column)
   
         setJourneys(result.data.content)
         setAmtPages(result.data.totalPages)
@@ -21,14 +50,14 @@ const JourneyList = () => {
       fetchData();
     } else {
       const fetchData = async () => {
-        const result = await journeyService.getPage(page)
+        const result = await journeyService.getPage(page, sort, column)
 
         setJourneys(result.data)
       }
 
       fetchData();
     }
-  }, [page])
+  }, [page, sort, column])
 
   const prevPage = () => {
     if (page > 0) {
@@ -67,6 +96,7 @@ const JourneyList = () => {
         <input type="text" onInput={handlePageInputChange}></input>
         <button onClick={jumpToPage}>Jump!</button>
       </div>
+      <Sort setColumn={setColumn} setSort={setSort}/>
       <table>
         <thead>
           <tr>
