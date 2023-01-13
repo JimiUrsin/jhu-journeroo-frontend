@@ -134,6 +134,7 @@ const App = () => {
     <>
       <h1>Journeroo</h1>
       <JourneyList/>
+      <p>All "journey" (Helsinki City Bike Origin-Destination) data on this page is owned by City Bike Finland</p>
     </>
   )
 }
