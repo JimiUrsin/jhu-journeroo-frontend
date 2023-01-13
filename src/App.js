@@ -58,9 +58,9 @@ const Journeys = ({journeys}) => (
 )
 
 const JourneyList = () => {
-  const [journeys, setJourneys] = useState([])  
+  const [journeys, setJourneys] = useState([{id:0, departureTimestamp:"", returnTimestamp:"", departureStationId:0, departureStationName:"Loading data...", returnStationId:0, returnStationName:"", distance:"", duration:""}])
   const [page, setPage] = useState(0)
-  const [amtPages, setAmtPages] = useState("0")
+  const [amtPages, setAmtPages] = useState("1")
   const [pageInput, setPageInput] = useState("")
   const [sort, setSort] = useState("ASC")
   const [column, setColumn] = useState("departurestationname")
